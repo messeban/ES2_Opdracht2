@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opdracht 3</title>
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+  <h1>Opdracht 3</h1>
+  <table id='myTable' class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    </table>
+
+    <FORM ACTION="http://MouriRasp/cgi-bin/Opdracht2"
+ METHOD="POST">
+<DIV>Your input (80 chars max.):<BR>
+<label for="Name">Name:</label><br>
+<INPUT NAME="Name" id="Name" SIZE="60" MAXLENGTH="80"><BR>
+<label for="Comment">Comment:</label><br>
+<INPUT NAME="Comment" id="Comment" SIZE="60" MAXLENGTH="80"><BR>
+<INPUT TYPE="SUBMIT" VALUE="Send"></DIV>
+</FORM>
+  <!-- JavaScript Bundle with Popper -->
+  <script>
+    var count = 0;
+    fetch("./data.json")
+      .then(res => res.json())
+        .then(data =>{
+          data.users.forEach(element => {
+            console.log(element);
+          var table = document.getElementById("myTable");
+          var row = table.insertRow(1+count);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          cell1.innerHTML = count;
+          cell2.innerHTML = element.Name;
+          cell3.innerHTML = element.Comment;
+          cell4.innerHTML = element.timestamp;
+          count++;
+          });
+})
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+</body>
+</html>
